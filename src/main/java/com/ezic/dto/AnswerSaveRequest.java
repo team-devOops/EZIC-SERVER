@@ -6,10 +6,9 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class QuestionUpdateRequest {
+public class AnswerSaveRequest {
     private Long qSeq;
-    private String question;
     private String answer;
-    private String level;
+    private Flag answerYn;
     private Flag useYn;
 }
