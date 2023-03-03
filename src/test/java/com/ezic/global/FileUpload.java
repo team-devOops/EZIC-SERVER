@@ -28,30 +28,30 @@ public class FileUpload implements CompletionHandler<Integer, ByteBuffer> {
 
     @Test
     void test() throws IOException {
+        long startTime = System.nanoTime();
+
         AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(path, EnumSet.of(StandardOpenOption.READ), executorService);
 
         ByteBuffer buffer = ByteBuffer.allocate((int) fileChannel.size());
         long position = 0;
 
-        System.out.println("zz");
-
         fileChannel.read(buffer, position, buffer, new CompletionHandler<>() {
             @Override
             public void completed(Integer result, ByteBuffer attachment) {
-                System.out.println("result = " + result);
-
-                attachment.flip();
-
-                Charset charset = Charset.defaultCharset();
-                String data = charset.decode(buffer).toString();
-
-                System.out.println(data + " : " + Thread.currentThread().getName());
-                attachment.clear();
-
+                result = -1;
                 try {
+                    if(result == -1) throw new IOException();
+
+                    attachment.flip();
+
+                    Charset charset = Charset.defaultCharset();
+                    String data = charset.decode(buffer).toString();
+
+                    attachment.clear();
+
                     fileChannel.close();
                 } catch (IOException e) {
-
+                    long endTime = System.nanoTime();
                 }
             }
 
