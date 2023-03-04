@@ -40,6 +40,9 @@ dependencies {
 
 	implementation 'mysql:mysql-connector-java'
 	testImplementation 'com.h2database:h2'
+
+	implementation 'commons-fileupload:commons-fileupload:1.4'
+	implementation 'commons-io:commons-io:2.4'
 }
 
 tasks.named('test') {
