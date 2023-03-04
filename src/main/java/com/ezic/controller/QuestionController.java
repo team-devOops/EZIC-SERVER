@@ -35,6 +35,14 @@ public class QuestionController {
             .build());
     }
 
+    @GetMapping(value = "/")
+    @ApiOperation(value = "문제 List 조회", notes = "문제 List를 조회합니다.")
+    public ResponseEntity<ResultResponse<Object>> selectList() {
+        return ResultResponse.ok(ResultResponse.builder()
+                .data(questionService.selectList())
+            .build());
+    }
+
     @PatchMapping(value = "/{qSeq}")
     @ApiOperation(value = "문제 수정", notes = "문제를 수정합니다.")
     public ResponseEntity<ResultResponse<Object>> update(@PathVariable Long qSeq,

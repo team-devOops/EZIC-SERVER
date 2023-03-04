@@ -1,11 +1,14 @@
 package com.ezic.global.utils;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousFileChannel;
 import java.nio.channels.CompletionHandler;
@@ -64,6 +67,18 @@ public class FileUtils {
         executorService.shutdown();
     }
 
+    public static MultipartFile fileToMultipartFile(File file) throws IOException {
+        FileItem fileItem = new DiskFileItem("file", Files.probeContentType(file.toPath()), false, file.getName(), (int) file.length(), file.getParentFile());
+
+        InputStream input = new FileInputStream(file);
+        OutputStream os = fileItem.getOutputStream();
+        IOUtils.copy(input, os);
+
+        MultipartFile multipartFile = new CommonsMultipartFile(fileItem);
+
+        return multipartFile;
+    }
+
     public static void saveFile(String saveName, MultipartFile file, String directoryPath) throws IOException {
         Path directory = Paths.get(directoryPath).toAbsolutePath().normalize();
 
@@ -75,7 +90,11 @@ public class FileUtils {
         Path targetPath = directory.resolve(saveName).normalize();
 
         Assert.state(!Files.exists(targetPath), saveName + " File alerdy exists.");
-        file.transferTo(targetPath);
+        try {
+            file.transferTo(targetPath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void deleteFile(String seq, String path) {
