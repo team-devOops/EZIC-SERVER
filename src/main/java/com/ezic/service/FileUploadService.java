@@ -25,6 +25,7 @@ public class FileUploadService {
         return fileUploadRepository.save(fileUpload);
     }
 
+    @Transactional
     public FileUpload fileSave(MultipartFile multipartFile) {
         FileUpload fileUpload = FileUpload.builder()
                 .originName(multipartFile.getOriginalFilename())
@@ -44,10 +45,10 @@ public class FileUploadService {
             e.printStackTrace();
         }
 
-        return update(fileUpload);
+        return fileUpload;
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional
     public FileUpload update(FileUpload fileUploadParam) {
         FileUpload fileUpload = selectOne(fileUploadParam.getSeq());
 
@@ -68,10 +69,13 @@ public class FileUploadService {
                 .orElseThrow(() -> RESOURCE_NOT_FOUND_EXCEPTION);
     }
 
+    @Transactional
     public FileUpload delete(Long seq) {
         FileUtils.deleteFile(String.valueOf(seq), FILE_UPLOAD_PATH);
+
         return update(FileUpload.builder()
                 .seq(seq)
+                .uploadYn(Flag.N)
                 .useYn(Flag.N)
             .build());
     }
