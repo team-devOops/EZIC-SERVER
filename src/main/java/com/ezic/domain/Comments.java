@@ -44,8 +44,8 @@ public class Comments extends BaseDomain {
     private Flag useYn;
 
     @org.hibernate.annotations.Comment("추천수")
-    @Column(name = "like", nullable = false, columnDefinition = "bigint")
-    private Long like;
+    @Column(name = "like_cnt", nullable = false, columnDefinition = "bigint")
+    private Long likeCnt;
 
     public void changeUseYn(Flag useYn) {
         this.useYn = useYn;
