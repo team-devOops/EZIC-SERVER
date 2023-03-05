@@ -36,7 +36,7 @@ public class CommentsService {
                 .level(commentsSaveRequest.getLevel() == null ? 0 : commentsSaveRequest.getLevel())
                 .comments(commentsSaveRequest.getComment())
                 .useYn(Flag.Y)
-                .like(0L)
+                .likeCnt(0L)
             .build();
     }
 
