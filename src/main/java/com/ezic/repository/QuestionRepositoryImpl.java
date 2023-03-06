@@ -23,14 +23,8 @@ public class QuestionRepositoryImpl implements QuestionRepositoryCustom {
         return jpaQueryFactory.select(qQuestion.qSeq)
                 .from(qQuestion)
                 .where(qQuestion.useYn.eq(Flag.Y))
-                .orderBy(Expressions.numberTemplate(Double.class, "1+FLOOR(rand()*" + count + ")").asc())
+                .orderBy(Expressions.numberTemplate(Long.class, "1+FLOOR(rand()*" + count + ")").asc())
                 .limit(random)
                 .fetch();
-
-//        return jpaQueryFactory.selectFrom(qQuestion)
-//                .from(qQuestion)
-//                .where(qQuestion.qSeq.in(randList))
-//                .orderBy()
-//                .fetch();
     }
 }
