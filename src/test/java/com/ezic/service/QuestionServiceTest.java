@@ -1,15 +1,19 @@
 package com.ezic.service;
 
+import com.ezic.domain.QQuestion;
 import com.ezic.domain.Question;
 import com.ezic.dto.QuestionSaveRequest;
 import com.ezic.dto.QuestionUpdateRequest;
 import com.ezic.global.domain.Flag;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,6 +23,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class QuestionServiceTest {
     @Autowired
     QuestionService questionService;
+
+    @Test
+    @DisplayName("")
+    void selectRandQuestionList() {
+
+    }
 
     @Test
     @DisplayName("Question 등록")

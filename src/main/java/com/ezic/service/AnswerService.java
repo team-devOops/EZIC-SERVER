@@ -31,7 +31,7 @@ public class AnswerService {
 
     public Answer save(AnswerSaveRequest answerSaveRequest) {
         return answerRepository.save(Answer.builder()
-                .qSeq(answerSaveRequest.getQSeq())
+                //.qSeq(answerSaveRequest.getQSeq())
                 .answer(answerSaveRequest.getAnswer())
                 .answerYn(Flag.N)
                 .useYn(Flag.Y)

@@ -3,6 +3,7 @@ package com.ezic.service;
 import com.ezic.domain.Question;
 import com.ezic.dto.QuestionSaveRequest;
 import com.ezic.dto.QuestionUpdateRequest;
+import com.ezic.dto.TestMstSaveRequest;
 import com.ezic.global.domain.Flag;
 import com.ezic.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,11 @@ import static com.ezic.global.exception.BaseException.*;
 @RequiredArgsConstructor
 public class QuestionService {
     private final QuestionRepository questionRepository;
+
+    public List<Long> selectRandQuestionList(TestMstSaveRequest testMstSaveRequest) {
+        int count = questionRepository.countByUseYn(Flag.Y);
+        return questionRepository.getRandQuestionSeqList(testMstSaveRequest.getQuestionCnt(), count);
+    }
 
     @Transactional(readOnly = true)
     public Question selectOne(Long qSeq) {

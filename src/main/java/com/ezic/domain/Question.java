@@ -57,5 +57,15 @@ public class Question extends BaseDomain {
         this.useYn = useYn;
     }
 
+    @Override
+    public String toString() {
+        return "Question{" +
+                "qSeq=" + qSeq +
+                ", question='" + question + '\'' +
+                ", answer='" + answer + '\'' +
+                ", level='" + level + '\'' +
+                ", useYn=" + useYn +
+                '}';
+    }
 }
 
