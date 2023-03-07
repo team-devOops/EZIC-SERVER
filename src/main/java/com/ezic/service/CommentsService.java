@@ -30,14 +30,14 @@ public class CommentsService {
     }
 
     public Comments save(CommentsSaveRequest commentsSaveRequest) {
-        return Comments.builder()
+        return commentsRepository.save(Comments.builder()
                 .qSeq(commentsSaveRequest.getQSeq())
                 .refCSeq(commentsSaveRequest.getRefCSeq())
-                .level(commentsSaveRequest.getLevel() == null ? 0 : commentsSaveRequest.getLevel())
+                .level(commentsSaveRequest.getLevel() == null ? 0L : commentsSaveRequest.getLevel())
                 .comments(commentsSaveRequest.getComment())
                 .useYn(Flag.Y)
                 .likeCnt(0L)
-            .build();
+            .build());
     }
 
     @Transactional
