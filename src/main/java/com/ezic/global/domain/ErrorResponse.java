@@ -36,7 +36,7 @@ public class ErrorResponse {
                         .error(errorCode.getHttpStatus().name())
                         .code(errorCode.name())
                         .message(errorCode.getDetail())
-                        .build()
+                    .build()
                 );
     }
 }

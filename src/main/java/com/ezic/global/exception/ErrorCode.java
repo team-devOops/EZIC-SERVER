@@ -19,7 +19,9 @@ public enum ErrorCode {
     AUTH_NOT_FOUND(NOT_FOUND, "유효한 인증 내역이 없습니다"),
     RESOURCE_NOT_FOUND(NOT_FOUND, "데이터가 없습니다"),
 
-    DUPLICATE_RESOURCE(CONFLICT, "데이터가 이미 존재합니다");
+    DUPLICATE_RESOURCE(CONFLICT, "데이터가 이미 존재합니다"),
+
+    SERVER_ERROR(SERVICE_UNAVAILABLE, "");
 
     private final HttpStatus httpStatus;
     private final String detail;
