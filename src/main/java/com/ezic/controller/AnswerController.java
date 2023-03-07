@@ -19,7 +19,7 @@ public class AnswerController {
 
     @PostMapping(value = "/")
     @ApiOperation(value = "정답 등록", notes = "정답을 등록합니다.")
-    public ResponseEntity<ResultResponse<Object>> create(@RequestBody AnswerSaveRequest answerSaveRequest) {
+    public ResponseEntity<ResultResponse<Object>> create(@RequestBody AnswerSaveRequest answerSaveRequest) throws Exception {
         System.out.println("answerSaveRequest : " + answerSaveRequest.toString());
         return ResultResponse.ok(ResultResponse.builder()
                 .data(answerService.save(answerSaveRequest))

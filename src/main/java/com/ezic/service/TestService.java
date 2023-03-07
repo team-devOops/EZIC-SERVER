@@ -41,7 +41,7 @@ public class TestService {
     }
 
     @Transactional
-    public TestDet submitAnswer(Long aSeq, TestSubmitRequest testSubmitRequest) {
+    public TestDet submitAnswer(Long aSeq, TestSubmitRequest testSubmitRequest) throws Exception {
         return testDetRepository.save(TestDet.builder()
                 .aSeq(aSeq)
                 .tSeq(testSubmitRequest.getTSeq())

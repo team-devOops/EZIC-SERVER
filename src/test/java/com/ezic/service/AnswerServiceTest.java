@@ -22,7 +22,7 @@ class AnswerServiceTest {
 
     @Test
     @DisplayName("Answer 등록")
-    void saveTest() {
+    void saveTest() throws Exception {
         //given
         Long qSeq = 1L;
         String answer = "정답";
@@ -50,7 +50,7 @@ class AnswerServiceTest {
 
     @Test
     @DisplayName("Answer 단건 조회")
-    void selectOneTest() {
+    void selectOneTest() throws Exception {
         //given
         Answer answer = save();
 
@@ -68,7 +68,7 @@ class AnswerServiceTest {
 
     @Test
     @DisplayName("Answer 업데이트")
-    void updateTest() {
+    void updateTest() throws Exception {
         //given
         Answer answer = save();
 
@@ -88,7 +88,7 @@ class AnswerServiceTest {
 
     @Test
     @DisplayName("Answer 삭제")
-    void deleteTest() {
+    void deleteTest() throws Exception {
         //given
         Answer answer = save();
 
@@ -99,7 +99,7 @@ class AnswerServiceTest {
         assertEquals(Flag.N, result.getUseYn());
     }
 
-    private Answer save() {
+    private Answer save() throws Exception {
         AnswerSaveRequest answerSaveRequest = AnswerSaveRequest.builder()
                 .qSeq(1L)
                 .answer("정답")

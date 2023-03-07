@@ -29,13 +29,16 @@ public class AnswerService {
                 .orElseThrow(() -> RESOURCE_NOT_FOUND_EXCEPTION);
     }
 
-    public Answer save(AnswerSaveRequest answerSaveRequest) {
-        return answerRepository.save(Answer.builder()
-                //.qSeq(answerSaveRequest.getQSeq())
+    @Transactional
+    public Answer save(AnswerSaveRequest answerSaveRequest) throws Exception {
+        Answer answer = answerRepository.save(Answer.builder()
+                .qSeq(answerSaveRequest.getQSeq())
                 .answer(answerSaveRequest.getAnswer())
                 .answerYn(Flag.N)
                 .useYn(Flag.Y)
             .build());
+
+        return answer;
     }
 
     @Transactional
