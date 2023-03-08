@@ -12,6 +12,5 @@ import java.util.Optional;
 public interface QuestionRepository extends JpaRepository<Question, Long>, QuestionRepositoryCustom {
     Optional<Question> findOneByqSeq(Long qSeq);
     List<Question> findAll();
-
     int countByUseYn(Flag useYn);
 }

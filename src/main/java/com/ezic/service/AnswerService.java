@@ -30,7 +30,7 @@ public class AnswerService {
     }
 
     @Transactional
-    public Answer save(AnswerSaveRequest answerSaveRequest) throws Exception {
+    public Answer save(AnswerSaveRequest answerSaveRequest) throws RuntimeException {
         Answer answer = answerRepository.save(Answer.builder()
                 .qSeq(answerSaveRequest.getQSeq())
                 .answer(answerSaveRequest.getAnswer())
@@ -55,6 +55,7 @@ public class AnswerService {
         Answer answer = selectOne(aSeq);
 
         answer.changeUseYn(Flag.N);
+
         return answer;
     }
 }

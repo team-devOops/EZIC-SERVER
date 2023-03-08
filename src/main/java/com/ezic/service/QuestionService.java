@@ -20,9 +20,15 @@ import static com.ezic.global.exception.BaseException.*;
 public class QuestionService {
     private final QuestionRepository questionRepository;
 
+    @Transactional(readOnly = true)
     public List<Long> selectRandQuestionList(TestMstSaveRequest testMstSaveRequest) {
         int count = questionRepository.countByUseYn(Flag.Y);
         return questionRepository.getRandQuestionSeqList(testMstSaveRequest.getQuestionCnt(), count);
+    }
+
+    @Transactional(readOnly = true)
+    public int getQuestionCnt() {
+        return questionRepository.countByUseYn(Flag.Y);
     }
 
     @Transactional(readOnly = true)
@@ -31,6 +37,12 @@ public class QuestionService {
                 .orElseThrow(() -> RESOURCE_NOT_FOUND_EXCEPTION);
     }
 
+    @Transactional(readOnly = true)
+    public List<Question> selectListByTSeq(String questionList) {
+        return questionRepository.getQuestionListByTSeq(questionList);
+    }
+
+    @Transactional
     public Question save(QuestionSaveRequest questionSaveRequest) {
         return questionRepository.save(Question.builder()
                 .question(questionSaveRequest.getQuestion())
@@ -69,6 +81,7 @@ public class QuestionService {
         return question;
     }
 
+    @Transactional(readOnly = true)
     public List<Question> selectList() {
         return questionRepository.findAll();
     }
