@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface AnswerRepository extends JpaRepository<Answer, Long> {
+public interface AnswerRepository extends JpaRepository<Answer, Long>, AnswerRepositoryCustom {
     List<Answer> findAll();
 
     Optional<Answer> findOneByaSeq(Long aSeq);

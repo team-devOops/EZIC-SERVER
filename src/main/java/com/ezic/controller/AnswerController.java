@@ -1,6 +1,7 @@
 package com.ezic.controller;
 
 import com.ezic.dto.*;
+import com.ezic.facade.TestFacade;
 import com.ezic.global.domain.ResultResponse;
 import com.ezic.service.AnswerService;
 import io.swagger.annotations.Api;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class AnswerController {
 
     private final AnswerService answerService;
+    private final TestFacade testFacade;
 
     @PostMapping(value = "/")
     @ApiOperation(value = "정답 등록", notes = "정답을 등록합니다.")
@@ -31,6 +33,14 @@ public class AnswerController {
     public ResponseEntity<ResultResponse<Object>> select(@PathVariable Long aSeq) {
         return ResultResponse.ok(ResultResponse.builder()
                 .data(answerService.selectOne(aSeq))
+            .build());
+    }
+
+    @GetMapping(value = "/test/{tSeq}")
+    @ApiOperation(value = "문제 조회", notes = "문제를 조회합니다.")
+    public ResponseEntity<ResultResponse<Object>> selectTestList(@PathVariable Long tSeq) {
+        return ResultResponse.ok(ResultResponse.builder()
+                .data(testFacade.selectAnswerListByTSeq(tSeq))
             .build());
     }
 

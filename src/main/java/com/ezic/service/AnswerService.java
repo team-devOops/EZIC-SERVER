@@ -1,6 +1,7 @@
 package com.ezic.service;
 
 import com.ezic.domain.Answer;
+import com.ezic.domain.Question;
 import com.ezic.dto.AnswerSaveRequest;
 import com.ezic.dto.AnswerUpdateRequest;
 import com.ezic.global.domain.Flag;
@@ -27,6 +28,11 @@ public class AnswerService {
     public Answer selectOne(Long aSeq) {
         return answerRepository.findOneByaSeq(aSeq)
                 .orElseThrow(() -> RESOURCE_NOT_FOUND_EXCEPTION);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Answer> selectListByTSeq(List<Long> answerList) {
+        return answerRepository.getAnswerListByTSeq(answerList);
     }
 
     @Transactional
