@@ -23,7 +23,7 @@ public class TestFacade {
     private final QuestionService questionService;
 
     @Transactional
-    public TestDet testSubmit(TestSubmitRequest testSubmitRequest)  {
+    public TestDet testSubmit(TestSubmitRequest testSubmitRequest) {
         Answer answer = answerService.save(testSubmitRequest);
         TestDet testDet = testService.submitAnswer(answer.getASeq(), testSubmitRequest);
 
@@ -34,5 +34,11 @@ public class TestFacade {
         String questionList = testService.selectTestMstOne(tSeq).getQuestionList();
 
         return questionService.selectListByTSeq(questionList);
+    }
+
+    public List<Answer> selectAnswerListByTSeq(Long tSeq) {
+        List<Long> answerList = testService.selectTestDetAnswer(tSeq);
+
+        return answerService.selectListByTSeq(answerList);
     }
 }
