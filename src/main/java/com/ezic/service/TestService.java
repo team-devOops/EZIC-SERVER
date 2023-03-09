@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.ezic.global.exception.BaseException.RESOURCE_NOT_FOUND_EXCEPTION;
@@ -26,6 +27,11 @@ public class TestService {
     public TestMst selectTestMstOne(Long tSeq) {
         return testMstRepository.findOneBytSeq(tSeq)
                 .orElseThrow(() -> RESOURCE_NOT_FOUND_EXCEPTION);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Long> selectTestDetAnswer(Long tSeq) {
+        return testDetRepository.findBytSeq(tSeq).stream().map(testDet -> testDet.getASeq()).collect(Collectors.toList());
     }
 
     @Transactional
