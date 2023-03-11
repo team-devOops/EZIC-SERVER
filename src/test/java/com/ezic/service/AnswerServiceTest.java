@@ -4,12 +4,16 @@ import com.ezic.domain.Answer;
 import com.ezic.dto.AnswerSaveRequest;
 import com.ezic.dto.AnswerUpdateRequest;
 import com.ezic.global.domain.Flag;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -99,7 +103,31 @@ class AnswerServiceTest {
         assertEquals(Flag.N, result.getUseYn());
     }
 
-    private Answer save() throws Exception {
+    @Test
+    @DisplayName("Aseq 리스트로 해당하는 Answer List 조회")
+    void selectListByTSeqTest() {
+        //given
+        List<Answer> answerList = new ArrayList<>();
+        List<Long> aSeqList = new ArrayList<>();
+        int count = 3;
+        for (int i = 0; i < count; i++) {
+            answerList.add(save());
+            aSeqList.add(answerList.get(i).getASeq());
+        }
+
+        //when
+        List<Answer> result = answerService.selectListByTSeq(aSeqList);
+
+        //then
+        SoftAssertions.assertSoftly(softAssertions -> {
+            assertEquals(count, result.size());
+            for (int i = 0; i < count; i++) {
+                assertEquals(aSeqList.get(i), result.get(i).getASeq());
+            }
+        });
+    }
+
+    private Answer save() {
         AnswerSaveRequest answerSaveRequest = AnswerSaveRequest.builder()
                 .qSeq(1L)
                 .answer("정답")
