@@ -1,7 +1,6 @@
 package com.ezic.service;
 
 import com.ezic.domain.Answer;
-import com.ezic.domain.Question;
 import com.ezic.dto.AnswerSaveRequest;
 import com.ezic.dto.AnswerUpdateRequest;
 import com.ezic.global.domain.Flag;
