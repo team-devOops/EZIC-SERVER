@@ -1,14 +1,11 @@
 package com.ezic.controller;
 
-import com.ezic.domain.Answer;
 import com.ezic.domain.TestDet;
 import com.ezic.dto.TestMstSaveRequest;
 import com.ezic.dto.TestSubmitRequest;
 import com.ezic.facade.TestFacade;
-import com.ezic.global.domain.ErrorResponse;
 import com.ezic.global.domain.ResultResponse;
-import com.ezic.global.exception.ErrorCode;
-import com.ezic.service.TestService;
+import com.ezic.service.TestMstService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -22,14 +19,14 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = {"시험 관리"})
 @RequiredArgsConstructor
 public class TestController {
-    private final TestService testService;
+    private final TestMstService testMstService;
     private final TestFacade testFacade;
 
     @PostMapping(value = "/")
     @ApiOperation(value = "시험지 생성", notes = "시험지를 생성합니다.")
     public ResponseEntity<ResultResponse<Object>> create(@RequestBody TestMstSaveRequest testSaveRequest) {
         return ResultResponse.ok(ResultResponse.builder()
-                .data(testService.save(testSaveRequest))
+                .data(testMstService.save(testSaveRequest))
             .build());
     }
 
