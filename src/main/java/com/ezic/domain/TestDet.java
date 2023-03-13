@@ -1,7 +1,6 @@
 package com.ezic.domain;
 
 import com.ezic.global.domain.BaseDomain;
-import com.ezic.global.domain.Flag;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
