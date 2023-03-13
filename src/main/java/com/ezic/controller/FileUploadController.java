@@ -1,8 +1,5 @@
 package com.ezic.controller;
 
-import com.ezic.domain.FileUpload;
-import com.ezic.global.domain.Flag;
-import com.ezic.global.utils.FileUtils;
 import com.ezic.global.domain.ResultResponse;
 import com.ezic.service.FileUploadService;
 import io.swagger.annotations.Api;
@@ -13,8 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/admin/file")
