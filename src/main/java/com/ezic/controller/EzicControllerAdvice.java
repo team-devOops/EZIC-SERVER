@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @ControllerAdvice
-public class TestControllerAdvice {
+public class EzicControllerAdvice {
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseEntity serverErrorHandler(RuntimeException e) {
         log.error("{}", e.getStackTrace()[0]);
