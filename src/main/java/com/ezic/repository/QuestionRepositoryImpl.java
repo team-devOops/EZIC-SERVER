@@ -3,7 +3,6 @@ package com.ezic.repository;
 import com.ezic.domain.QQuestion;
 import com.ezic.domain.Question;
 import com.ezic.global.domain.Flag;
-import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;

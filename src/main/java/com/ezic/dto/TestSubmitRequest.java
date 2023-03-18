@@ -2,7 +2,6 @@ package com.ezic.dto;
 
 import com.ezic.global.domain.Flag;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;

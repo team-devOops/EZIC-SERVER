@@ -44,8 +44,6 @@ public class FileUtils {
 
                 attachment.clear();
 
-                System.out.println(data);
-
                 try {
                     fileChannel.close();
                 } catch (IOException e) {
