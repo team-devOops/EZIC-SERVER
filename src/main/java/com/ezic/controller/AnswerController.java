@@ -1,5 +1,6 @@
 package com.ezic.controller;
 
+import com.ezic.domain.Answer;
 import com.ezic.dto.*;
 import com.ezic.facade.TestFacade;
 import com.ezic.global.domain.ResultResponse;
@@ -9,6 +10,10 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/a")
@@ -21,42 +26,51 @@ public class AnswerController {
 
     @PostMapping(value = "/")
     @ApiOperation(value = "정답 등록", notes = "정답을 등록합니다.")
-    public ResponseEntity<ResultResponse<Object>> create(@RequestBody AnswerSaveRequest answerSaveRequest) throws Exception {
-        return ResultResponse.ok(ResultResponse.builder()
-                .data(answerService.save(answerSaveRequest))
-            .build());
+    public ResponseEntity<Void> create(@RequestBody AnswerSaveRequest answerSaveRequest) {
+        Answer answer = answerService.save(answerSaveRequest);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{aSeq}")
+                .buildAndExpand(answer.getASeq())
+                .toUri();
+
+        return ResponseEntity.created(location).build();
     }
 
     @GetMapping(value = "/{aSeq}")
     @ApiOperation(value = "정답 조회", notes = "정답을 조회합니다.")
-    public ResponseEntity<ResultResponse<Object>> select(@PathVariable Long aSeq) {
+    public ResponseEntity<ResultResponse<AnswerResponse>> select(@PathVariable Long aSeq) {
+        Answer answer = answerService.selectOne(aSeq);
         return ResultResponse.ok(ResultResponse.builder()
-                .data(answerService.selectOne(aSeq))
+                .data(AnswerResponse.from(answer))
             .build());
     }
 
     @GetMapping(value = "/test/{tSeq}")
     @ApiOperation(value = "문제 조회", notes = "문제를 조회합니다.")
-    public ResponseEntity<ResultResponse<Object>> selectTestList(@PathVariable Long tSeq) {
+    public ResponseEntity<ResultResponse<AnswerResponse>> selectTestList(@PathVariable Long tSeq) {
+        List<Answer> answerList = testFacade.selectAnswerListByTSeq(tSeq);
+
         return ResultResponse.ok(ResultResponse.builder()
-                .data(testFacade.selectAnswerListByTSeq(tSeq))
+                .data(AnswerResponse.fromList(answerList))
             .build());
     }
 
     @PatchMapping(value = "/{aSeq}")
     @ApiOperation(value = "정답 수정", notes = "정답을 수정합니다.")
-    public ResponseEntity<ResultResponse<Object>> update(@PathVariable Long aSeq,
-                                                         @RequestBody AnswerUpdateRequest answerUpdateRequest) {
+    public ResponseEntity<ResultResponse<AnswerResponse>> update(@PathVariable Long aSeq,
+                                                                 @RequestBody AnswerUpdateRequest answerUpdateRequest) {
+        Answer answer = answerService.update(aSeq, answerUpdateRequest);
         return ResultResponse.ok(ResultResponse.builder()
-                .data(answerService.update(aSeq, answerUpdateRequest))
+                .data(AnswerResponse.from(answer))
             .build());
     }
 
     @DeleteMapping(value = "/{aSeq}")
     @ApiOperation(value = "정답 삭제", notes = "정답을 삭제합니다.")
-    public ResponseEntity<ResultResponse<Object>> delete(@PathVariable Long aSeq) {
-        return ResultResponse.ok(ResultResponse.builder()
-                .data(answerService.delete(aSeq))
-            .build());
+    public ResponseEntity<ResultResponse<Void>> delete(@PathVariable Long aSeq) {
+        answerService.delete(aSeq);
+
+        return ResultResponse.ok();
     }
 }
