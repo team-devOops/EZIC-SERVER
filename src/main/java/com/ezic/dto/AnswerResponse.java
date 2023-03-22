@@ -3,7 +3,6 @@ package com.ezic.dto;
 import com.ezic.domain.Answer;
 import com.ezic.global.domain.Flag;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;

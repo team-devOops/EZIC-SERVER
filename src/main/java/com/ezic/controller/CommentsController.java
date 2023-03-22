@@ -1,5 +1,7 @@
 package com.ezic.controller;
 
+import com.ezic.domain.Comments;
+import com.ezic.dto.CommentsResponse;
 import com.ezic.dto.CommentsSaveRequest;
 import com.ezic.dto.CommentsUpdateRequest;
 import com.ezic.global.domain.ResultResponse;
@@ -9,6 +11,9 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api/comment")
@@ -20,17 +25,24 @@ public class CommentsController {
 
     @PostMapping(value = "/")
     @ApiOperation(value = "댓글 등록", notes = "댓글을 등록합니다.")
-    public ResponseEntity<ResultResponse<Object>> create(@RequestBody CommentsSaveRequest commentsSaveRequest) {
-        return ResultResponse.ok(ResultResponse.builder()
-                .data(commentsService.save(commentsSaveRequest))
-            .build());
+    public ResponseEntity<Void> create(@RequestBody CommentsSaveRequest commentsSaveRequest) {
+        Comments comments = commentsService.save(commentsSaveRequest);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{cSeq}")
+                .buildAndExpand(comments.getCSeq())
+                .toUri();
+
+        return ResponseEntity.created(location).build();
     }
 
     @GetMapping(value = "/{cSeq}")
     @ApiOperation(value = "댓글 조회", notes = "댓글을 조회합니다.")
-    public ResponseEntity<ResultResponse<Object>> select(@PathVariable Long cSeq) {
+    public ResponseEntity<ResultResponse<CommentsResponse>> select(@PathVariable Long cSeq) {
+        Comments comments = commentsService.selectOne(cSeq);
+
         return ResultResponse.ok(ResultResponse.builder()
-                .data(commentsService.selectOne(cSeq))
+                .data(CommentsResponse.from(comments))
             .build());
     }
 
@@ -38,16 +50,18 @@ public class CommentsController {
     @ApiOperation(value = "댓글 수정", notes = "댓글을 수정합니다.")
     public ResponseEntity<ResultResponse<Object>> update(@PathVariable Long cSeq,
                                                          @RequestBody CommentsUpdateRequest commentsUpdateRequest) {
+        Comments comments = commentsService.update(cSeq, commentsUpdateRequest);
+
         return ResultResponse.ok(ResultResponse.builder()
-                .data(commentsService.update(cSeq, commentsUpdateRequest))
+                .data(CommentsResponse.from(comments))
             .build());
     }
 
     @DeleteMapping(value = "/{cSeq}")
     @ApiOperation(value = "댓글 삭제", notes = "댓글을 삭제합니다.")
-    public ResponseEntity<ResultResponse<Object>> delete(@PathVariable Long cSeq) {
-        return ResultResponse.ok(ResultResponse.builder()
-                .data(commentsService.delete(cSeq))
-            .build());
+    public ResponseEntity<ResultResponse<Void>> delete(@PathVariable Long cSeq) {
+        commentsService.delete(cSeq);
+
+        return ResultResponse.ok();
     }
 }
