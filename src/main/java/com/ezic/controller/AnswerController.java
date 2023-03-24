@@ -48,7 +48,7 @@ public class AnswerController {
 
     @GetMapping(value = "/test/{tSeq}")
     @ApiOperation(value = "문제 조회", notes = "문제를 조회합니다.")
-    public ResponseEntity<ResultResponse<AnswerResponse>> selectTestList(@PathVariable Long tSeq) {
+    public ResponseEntity<ResultResponse<List<AnswerResponse>>> selectTestList(@PathVariable Long tSeq) {
         List<Answer> answerList = testFacade.selectAnswerListByTSeq(tSeq);
 
         return ResultResponse.ok(ResultResponse.builder()
