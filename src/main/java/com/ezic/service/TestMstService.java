@@ -1,7 +1,7 @@
 package com.ezic.service;
 
 import com.ezic.domain.*;
-import com.ezic.dto.TestMstSaveRequest;
+import com.ezic.dto.test.TestMstSaveRequest;
 import com.ezic.global.domain.Flag;
 import com.ezic.repository.QuestionRepository;
 import com.ezic.repository.TestMstRepository;

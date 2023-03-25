@@ -1,7 +1,7 @@
 package com.ezic.service;
 
 import com.ezic.domain.TestMst;
-import com.ezic.dto.TestMstSaveRequest;
+import com.ezic.dto.test.TestMstSaveRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,10 +1,9 @@
 package com.ezic.controller;
 
 import com.ezic.domain.Question;
-import com.ezic.dto.QuestionResponse;
-import com.ezic.dto.QuestionSaveRequest;
-import com.ezic.dto.QuestionSaveResponse;
-import com.ezic.dto.QuestionUpdateRequest;
+import com.ezic.dto.question.QuestionResponse;
+import com.ezic.dto.question.QuestionSaveRequest;
+import com.ezic.dto.question.QuestionUpdateRequest;
 import com.ezic.facade.TestFacade;
 import com.ezic.global.domain.ResultResponse;
 import com.ezic.service.QuestionService;

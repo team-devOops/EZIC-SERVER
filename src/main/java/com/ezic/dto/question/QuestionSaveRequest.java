@@ -1,4 +1,4 @@
-package com.ezic.dto;
+package com.ezic.dto.question;
 
 import com.ezic.global.domain.Flag;
 import lombok.Builder;

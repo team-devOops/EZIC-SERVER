@@ -1,7 +1,7 @@
 package com.ezic.repository;
 
 import com.ezic.domain.TestMst;
-import com.ezic.dto.TestMstSelectRequest;
+import com.ezic.dto.test.TestMstSelectRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

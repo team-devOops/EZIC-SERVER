@@ -1,7 +1,7 @@
 package com.ezic.repository;
 
 import com.ezic.domain.TestMst;
-import com.ezic.dto.TestMstSelectRequest;
+import com.ezic.dto.test.TestMstSelectRequest;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

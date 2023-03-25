@@ -1,10 +1,9 @@
-package com.ezic.dto;
+package com.ezic.dto.comments;
 
 import com.ezic.domain.Comments;
 import com.ezic.global.domain.Flag;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 @Getter
 @NoArgsConstructor

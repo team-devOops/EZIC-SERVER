@@ -1,4 +1,4 @@
-package com.ezic.dto;
+package com.ezic.dto.answer;
 
 import com.ezic.domain.Answer;
 import com.ezic.global.domain.Flag;

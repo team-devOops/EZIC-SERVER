@@ -1,5 +1,6 @@
-package com.ezic.dto;
+package com.ezic.dto.test;
 
+import com.ezic.dto.answer.AnswerSaveRequest;
 import com.ezic.global.domain.Flag;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

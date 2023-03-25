@@ -1,7 +1,9 @@
 package com.ezic.controller;
 
 import com.ezic.domain.Answer;
-import com.ezic.dto.*;
+import com.ezic.dto.answer.AnswerResponse;
+import com.ezic.dto.answer.AnswerSaveRequest;
+import com.ezic.dto.answer.AnswerUpdateRequest;
 import com.ezic.facade.TestFacade;
 import com.ezic.global.domain.ResultResponse;
 import com.ezic.service.AnswerService;

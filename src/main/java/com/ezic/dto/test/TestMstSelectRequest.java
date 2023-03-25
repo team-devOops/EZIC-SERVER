@@ -1,4 +1,4 @@
-package com.ezic.dto;
+package com.ezic.dto.test;
 
 import lombok.Builder;
 import lombok.Getter;
