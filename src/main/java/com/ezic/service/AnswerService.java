@@ -4,7 +4,7 @@ import com.ezic.domain.Answer;
 import com.ezic.dto.answer.AnswerSaveRequest;
 import com.ezic.dto.answer.AnswerUpdateRequest;
 import com.ezic.global.domain.Flag;
-import com.ezic.repository.AnswerRepository;
+import com.ezic.repository.answer.AnswerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
