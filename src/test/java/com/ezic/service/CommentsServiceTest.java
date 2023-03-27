@@ -1,8 +1,8 @@
 package com.ezic.service;
 
 import com.ezic.domain.Comments;
-import com.ezic.dto.CommentsSaveRequest;
-import com.ezic.dto.CommentsUpdateRequest;
+import com.ezic.dto.comments.CommentsSaveRequest;
+import com.ezic.dto.comments.CommentsUpdateRequest;
 import com.ezic.global.domain.Flag;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;

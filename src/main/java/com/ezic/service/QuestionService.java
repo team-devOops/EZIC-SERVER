@@ -1,11 +1,11 @@
 package com.ezic.service;
 
 import com.ezic.domain.Question;
-import com.ezic.dto.QuestionSaveRequest;
-import com.ezic.dto.QuestionUpdateRequest;
-import com.ezic.dto.TestMstSaveRequest;
+import com.ezic.dto.question.QuestionSaveRequest;
+import com.ezic.dto.question.QuestionUpdateRequest;
+import com.ezic.dto.test.TestMstSaveRequest;
 import com.ezic.global.domain.Flag;
-import com.ezic.repository.QuestionRepository;
+import com.ezic.repository.question.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

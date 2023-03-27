@@ -3,7 +3,7 @@ package com.ezic.facade;
 import com.ezic.domain.Answer;
 import com.ezic.domain.Question;
 import com.ezic.domain.TestDet;
-import com.ezic.dto.TestSubmitRequest;
+import com.ezic.dto.test.TestSubmitRequest;
 import com.ezic.service.AnswerService;
 import com.ezic.service.QuestionService;
 import com.ezic.service.TestDetService;

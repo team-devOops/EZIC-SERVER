@@ -1,8 +1,8 @@
 package com.ezic.service;
 
 import com.ezic.domain.Answer;
-import com.ezic.dto.AnswerSaveRequest;
-import com.ezic.dto.AnswerUpdateRequest;
+import com.ezic.dto.answer.AnswerSaveRequest;
+import com.ezic.dto.answer.AnswerUpdateRequest;
 import com.ezic.global.domain.Flag;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;

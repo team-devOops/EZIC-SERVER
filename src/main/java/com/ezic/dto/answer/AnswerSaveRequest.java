@@ -1,4 +1,4 @@
-package com.ezic.dto;
+package com.ezic.dto.answer;
 
 import com.ezic.global.domain.Flag;
 import com.fasterxml.jackson.annotation.JsonProperty;

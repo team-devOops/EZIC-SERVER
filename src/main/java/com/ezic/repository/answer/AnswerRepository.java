@@ -1,4 +1,4 @@
-package com.ezic.repository;
+package com.ezic.repository.answer;
 
 import com.ezic.domain.Answer;
 import org.springframework.data.jpa.repository.JpaRepository;

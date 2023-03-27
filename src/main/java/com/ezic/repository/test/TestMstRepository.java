@@ -1,4 +1,4 @@
-package com.ezic.repository;
+package com.ezic.repository.test;
 
 import com.ezic.domain.TestMst;
 import org.springframework.data.jpa.repository.JpaRepository;

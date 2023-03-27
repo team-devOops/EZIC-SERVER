@@ -1,8 +1,8 @@
 package com.ezic.controller;
 
 import com.ezic.domain.TestDet;
-import com.ezic.dto.TestMstSaveRequest;
-import com.ezic.dto.TestSubmitRequest;
+import com.ezic.dto.test.TestMstSaveRequest;
+import com.ezic.dto.test.TestSubmitRequest;
 import com.ezic.facade.TestFacade;
 import com.ezic.global.domain.ResultResponse;
 import com.ezic.service.TestMstService;

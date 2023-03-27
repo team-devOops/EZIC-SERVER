@@ -1,4 +1,4 @@
-package com.ezic.repository;
+package com.ezic.repository.question;
 
 import com.ezic.domain.Question;
 import org.springframework.stereotype.Repository;

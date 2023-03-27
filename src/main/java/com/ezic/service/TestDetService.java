@@ -1,8 +1,8 @@
 package com.ezic.service;
 
 import com.ezic.domain.TestDet;
-import com.ezic.dto.TestSubmitRequest;
-import com.ezic.repository.TestDetRepository;
+import com.ezic.dto.test.TestSubmitRequest;
+import com.ezic.repository.test.TestDetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
